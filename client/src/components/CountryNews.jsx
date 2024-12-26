@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import EverythingCard from './EverythingCard';
 import Loader from './Loader';
+const baseUrl = "https://news-aggregator-nine-sigma.vercel.app";
 
 function CountryNews() {
   const params = useParams();
@@ -24,7 +25,7 @@ function CountryNews() {
   useEffect(() => {
     setIsLoading(true);
     setError(null);
-    fetch(`https://news-aggregator-dusky.vercel.app/country/${params.iso}?page=${page}&pageSize=${pageSize}`)
+    fetch(`${baseUrl}/country/${params.iso}?page=${page}&pageSize=${pageSize}`)
       .then((response) => {
         if (response.ok) {
           return response.json();

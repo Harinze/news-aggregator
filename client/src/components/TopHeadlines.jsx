@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import EverythingCard from './EverythingCard'
 import Loader from "./Loader";
+const baseUrl = "https://news-aggregator-nine-sigma.vercel.app";
 
 function TopHeadlines() {
   const params = useParams();
@@ -25,7 +26,7 @@ function TopHeadlines() {
     setIsLoading(true);
     setError(null);
     const categoryParam = params.category ? `&category=${params.category}` : "";
-    fetch(`https://news-aggregator-dusky.vercel.app/top-headlines?language=en${categoryParam}&page=${page}&pageSize=${pageSize}`)
+    fetch(`${baseUrl}/top-headlines?language=en${categoryParam}&page=${page}&pageSize=${pageSize}`)
       .then((response) => {
         if (response.ok) {
           return response.json();

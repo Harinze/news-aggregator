@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import EverythingCard from './EverythingCard';
 import Loader from './Loader';
-const baseUrl = import.meta.env.VITE_PUBLIC_BASE_URL;
+//const baseUrl = import.meta.env.VITE_PUBLIC_BASE_URL;
+const baseUrl = "https://news-aggregator-nine-sigma.vercel.app";
 
 
 
