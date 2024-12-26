@@ -2,6 +2,8 @@
 
 This is a news aggregator project built using the MERN stack (MongoDB, Express, React, Node.js) and the NewsAPI.org API. The project allows users to view news articles from various sources.
 
+https://news-iota-nine.vercel.app/
+
 ## Getting Started
 
 These instructions will help you set up the project on your local machine for development and testing purposes.
