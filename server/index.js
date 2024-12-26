@@ -112,6 +112,12 @@ async function makeApiRequest(url) {
 }
 
 // Routes
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the News API Server. Use endpoints like /all-news, /top-headlines, or /country/:iso.");
+});
+
+
 app.get("/all-news", async (req, res) => {
   const pageSize = parseInt(req.query.pageSize) || 80;
   const page = parseInt(req.query.page) || 1;
