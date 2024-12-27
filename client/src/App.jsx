@@ -13,7 +13,10 @@ function App() {
   return (
     <div className="w-full">
       <BrowserRouter>
-        <Header />
+      
+      <Header />
+    
+        
         <Routes>
           <Route path="/" element={<AllNews />} />
           <Route path="/top-headlines/:category" element={<TopHeadlines />} />

@@ -9,7 +9,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: '*', // Be cautious with this in production
+  origin: '*',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -38,8 +38,8 @@ async function makeApiRequest(url) {
   }
 }
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the News API Server. Use endpoints like /all-news, /top-headlines, or /country/:iso.");
+app.get("/", (_req, res) => {
+  res.send("Welcome to the News aggregator server!");
 });
 
 
