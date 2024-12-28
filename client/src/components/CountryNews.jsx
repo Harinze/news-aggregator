@@ -32,12 +32,18 @@ function CountryNews() {
         }
         throw new Error('Network response was not ok');
       })
-      .then((myJson) => {
-        if (myJson.success) {
-          setTotalResults(myJson.data.totalResults);
-          setData(myJson.data.articles);
+      .then((res) => {
+        if (res.success) {
+
+          const filteredArticles = res.data.articles.filter((article) => {
+            return Object.values(article).every(
+              (value) => value !== "[Removed]"
+            );
+          });
+          setTotalResults(res.data.totalResults);
+          setData(filteredArticles);
         } else {
-          setError(myJson.message || 'An error occurred');
+          setError(res.message || 'An error occurred');
         }
       })
       .catch((error) => {

@@ -4,8 +4,6 @@ import Loader from './Loader';
 //const baseUrl = import.meta.env.VITE_PUBLIC_BASE_URL;
 const baseUrl = "https://news-aggregator-nine-sigma.vercel.app";
 
-
-
 function AllNews() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -27,21 +25,29 @@ function AllNews() {
     setIsLoading(true);
     setError(null);
     fetch(`${baseUrl}/all-news?page=${page}&pageSize=${pageSize}`)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
         throw new Error('Network response was not ok');
       })
-      .then(myJson => {
-        if (myJson.success) {
-          setTotalResults(myJson.data.totalResults);
-          setData(myJson.data.articles);
+      .then((res) => {
+        if (res.success) {
+          console.log('res', res);
+  
+          const filteredArticles = res.data.articles.filter((article) => {
+            return Object.values(article).every(
+              (value) => value !== "[Removed]"
+            );
+          });
+  
+          setTotalResults(res.data.totalResults);
+          setData(filteredArticles);
         } else {
-          setError(myJson.message || 'An error occurred');
+          setError(res.message || 'An error occurred');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Fetch error:', error);
         setError('Failed to fetch news. Please try again later.');
       })
@@ -49,12 +55,12 @@ function AllNews() {
         setIsLoading(false);
       });
   }, [page]);
-
+  
   return (
     <>
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      <div className='my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3 '>
+      <div className='my-10 cards grid relative bottom-[50px] lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3 '>
         {!isLoading ? data.map((element, index) => (
           <EverythingCard
             title={element.title}

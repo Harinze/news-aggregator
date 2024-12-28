@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import countries from "./countries";
-import downArrow from './../assets/downarrow.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowDown } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios';
+
 
 
 
@@ -28,7 +27,7 @@ function Header() {
     }
   }
   return (
-    <header className="">
+    <header className="mb-[170px]">
      <nav className="fixed top-0 left-0 w-full h-auto bg-gray-800 z-10 flex items-center justify-around">
       
       <h3 className="relative heading font-bold md:basis-1/6 text-2xl xs:basis-4/12 z-50 mb-5 mt-5">News Aggregator</h3>
@@ -53,7 +52,10 @@ function Header() {
               })}
             </ul>
           </li>
-          <li className="dropdown-li"><Link className="no-underline font-semibold flex items-center gap-2" onClick={() => { setShowCountryDropdown(!showCountryDropdown); setShowCategoryDropdown(false) }}>Country <FontAwesomeIcon className={showCountryDropdown ? "down-arrow-icon down-arrow-icon-active" : "down-arrow-icon"} icon={faCircleArrowDown} /></Link>
+
+
+
+          {/* <li className="dropdown-li"><Link className="no-underline font-semibold flex items-center gap-2" onClick={() => { setShowCountryDropdown(!showCountryDropdown); setShowCategoryDropdown(false) }}>Country <FontAwesomeIcon className={showCountryDropdown ? "down-arrow-icon down-arrow-icon-active" : "down-arrow-icon"} icon={faCircleArrowDown} /></Link>
             <ul className={showCountryDropdown ? "dropdown p-2 show-dropdown" : "dropdown p-2"}>
               {countries.map((element, index) => {
                 return (
@@ -73,7 +75,12 @@ function Header() {
                 )
               })}
             </ul>
-          </li>
+          </li> */}
+
+
+
+
+
           <li><Link className="no-underline font-semibold" to="#" onClick={() => { toggleTheme() }}>
       
           <input type="checkbox" className="checkbox" id="checkbox" />

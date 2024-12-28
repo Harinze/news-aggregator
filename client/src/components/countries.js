@@ -258,7 +258,6 @@ let countries = [];
 twoLetterISO.forEach(element => {
     let obj = {
         iso_2_alpha : element,
-        // 
         png : `https://flagcdn.com/24x18/${element}.png`,
         countryName : getCountryName(element.toUpperCase()),
     }

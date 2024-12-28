@@ -33,12 +33,17 @@ function TopHeadlines() {
         }
         throw new Error('Network response was not ok');
       })
-      .then((json) => {
-        if (json.success) {
-          setTotalResults(json.data.totalResults);
-          setData(json.data.articles);
+      .then((res) => {
+        if (res.success) {
+          const filteredArticles = res.data.articles.filter((article) => {
+            return Object.values(article).every(
+              (value) => value !== "[Removed]"
+            );
+          });
+          setTotalResults(res.data.totalResults);
+          setData(filteredArticles);
         } else {
-          setError(json.message || 'An error occurred');
+          setError(res.message || 'An error occurred');
         }
       })
       .catch((error) => {
