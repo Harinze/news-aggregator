@@ -7,7 +7,6 @@ dotenv.config();
 const app = express();
 
 
-// CORS configuration
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'OPTIONS'],
@@ -17,7 +16,7 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Helper function for API requests
+
 async function makeApiRequest(url) {
   try {
     const response = await axios.get(url);
@@ -46,7 +45,7 @@ app.get("/", (_req, res) => {
 app.get("/all-news", async (req, res) => {
   let pageSize = parseInt(req.query.pageSize) || 80;
   let page = parseInt(req.query.page) || 1;
-  let q = req.query.q || 'world'; // Default search query if none provided
+  let q = req.query.q || 'world';
 
   let url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}&apiKey=${process.env.API_KEY}`;
   const result = await makeApiRequest(url);
